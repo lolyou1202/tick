@@ -1,43 +1,46 @@
-module.exports = [
+import typescriptParser from '@typescript-eslint/parser'
+import typescriptPlugin from '@typescript-eslint/eslint-plugin'
+import angularPlugin from '@angular-eslint/eslint-plugin'
+import angularTemplateParser from '@angular-eslint/template-parser'
+import angularTemplatePlugin from '@angular-eslint/eslint-plugin-template'
+
+export default [
   {
     files: ['**/*.ts'],
     languageOptions: {
-      parser: require('@typescript-eslint/parser'),
+      parser: typescriptParser,
       parserOptions: {
-        project: ['./tsconfig.json', './tsconfig.spec.json'],
-        tsconfigRootDir: __dirname
+        project: ['./tsconfig.app.json', './tsconfig.spec.json'],
+        tsconfigRootDir: import.meta.dirname
       }
     },
     plugins: {
-      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
-      '@angular-eslint': require('@angular-eslint/eslint-plugin')
+      '@typescript-eslint': typescriptPlugin,
+      '@angular-eslint': angularPlugin
     },
     rules: {
-      // TypeScript specific rules
       '@typescript-eslint/explicit-function-return-type': [
         'error',
         {
-          allowExpressions: false, // Запрещает выражения без типа
-          allowTypedFunctionExpressions: true, // Разрешает выражения с типом
-          allowHigherOrderFunctions: true, // Разрешает функции высшего порядка
-          allowDirectConstAssertionInArrowFunctions: true, // Разрешает const assertions
-          allowConciseArrowFunctionExpressionsStartingWithVoid: false // Запрещает void без типа
+          allowExpressions: false,
+          allowTypedFunctionExpressions: true,
+          allowHigherOrderFunctions: true,
+          allowDirectConstAssertionInArrowFunctions: true,
+          allowConciseArrowFunctionExpressionsStartingWithVoid: false
         }
       ],
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
-          accessibility: 'explicit', // Требует явного указания public/private/protected
+          accessibility: 'explicit',
           overrides: {
-            constructors: 'no-public', // Конструкторы могут быть без public
-            accessors: 'explicit' // Геттеры/сеттеры тоже требуют модификатор
+            constructors: 'no-public',
+            accessors: 'explicit'
           }
         }
       ],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
-
-      // Angular specific rules
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -56,18 +59,15 @@ module.exports = [
       ]
     }
   },
-
-  // Configuration for HTML template files
   {
     files: ['**/*.html'],
     languageOptions: {
-      parser: require('@angular-eslint/template-parser')
+      parser: angularTemplateParser
     },
     plugins: {
-      '@angular-eslint/template': require('@angular-eslint/eslint-plugin-template')
+      '@angular-eslint/template': angularTemplatePlugin
     },
     rules: {
-      // Basic template rule
       '@angular-eslint/template/eqeqeq': 'error'
     }
   }
