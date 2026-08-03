@@ -1,0 +1,78 @@
+<form [formRoot]="registerForm" class="register-form">
+  <div class="form-group">
+    <input
+      type="string"
+      [formField]="registerForm.userName"
+      placeholder="Псевдоним"
+      autocomplete="name"
+    />
+    @if (
+      registerForm.userName().touched() && registerForm.userName().errors();
+      as errors
+    ) {
+      <div class="errors">
+        @for (err of errors; track $index) {
+          <small class="error-message">{{ err.message }}</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <input
+      type="email"
+      [formField]="registerForm.email"
+      placeholder="E-mail"
+      autocomplete="email"
+    />
+    @if (
+      registerForm.email().touched() && registerForm.email().errors();
+      as errors
+    ) {
+      <div class="errors">
+        @for (err of errors; track $index) {
+          <small class="error-message">{{ err.message }}</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <input
+      type="password"
+      [formField]="registerForm.password"
+      placeholder="Пароль: минимум 6 символов"
+      autocomplete="new-password"
+    />
+    @if (
+      registerForm.password().touched() && registerForm.password().errors();
+      as errors
+    ) {
+      <div class="errors">
+        @for (err of errors; track $index) {
+          <small class="error-message">{{ err.message }}</small>
+        }
+      </div>
+    }
+  </div>
+
+  <button
+    type="submit"
+    class="submit-btn"
+    [disabled]="registerForm().submitting()"
+  >
+    @if (registerForm().submitting()) {
+      <span class="spinner"></span> Подождите...
+    } @else {
+      Зарегистрироваться
+    }
+  </button>
+
+  @if (registerForm().errors(); as errors) {
+    <div class="form-errors">
+      @for (err of errors; track err.kind) {
+        <small class="error-message">{{ err.message }}</small>
+      }
+    </div>
+  }
+</form>
