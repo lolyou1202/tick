@@ -1,0 +1,60 @@
+:root {
+  --color-dark-1: #1c1c1c;
+  --color-dark-2: #232323;
+  --color-dark-3: #282828;
+  --color-dark-4: #333333;
+  --color-dark-5: #393939;
+  --color-dark-6: #404040;
+
+  --color-gray-1: #606060;
+  --color-gray-2: #777777;
+  --color-gray-3: #a7a7a7;
+  --color-gray-4: #a4a4a4;
+  --color-gray-5: #d2d2d2;
+
+  --color-white: #ffffff;
+
+  --color-orange-1: #ffb000;
+  --color-orange-2: #faa80c;
+  --color-orange-3: #ff5900;
+
+  --color-red-1: #e13e39;
+  --color-red-2: #e03131;
+
+  --color-green: #0cce9c;
+
+  --color-blue-1: #4772fa;
+  --color-blue-2: #3e60cd;
+  --color-blue-3: #4063d0;
+  --color-blue-4: #33447b;
+  --color-blue-5: #242d48;
+
+  --color-primary: var(--color-blue-1);
+  --color-primary-active: var(--color-blue-2);
+  --color-primary-hover: var(--color-blue-3);
+  --color-primary-disable: var(--color-blue-4);
+
+  --color-secondary: var(--color-orange-1);
+
+  --color-main-background: var(--color-dark-1);
+  --color-border: var(--color-dark-3);
+  --color-primary-front: var(--color-white);
+
+  --color-priority-low: var(--color-primary);
+  --color-priority-medium: var(--color-orange-3);
+  --color-priority-high: var(--color-red-1);
+
+  --color-warn: var(--color-red-2);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
