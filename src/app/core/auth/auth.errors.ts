@@ -1,15 +1,14 @@
-import { AuthErrorKind } from './auth.model'
-
 export class AuthError extends Error {
-  constructor(public kind: AuthErrorKind) {
-    super(API_ERROR_MESSAGES[kind])
+  constructor(public kind: keyof typeof API_AUTH_ERROR_MESSAGES) {
+    super(API_AUTH_ERROR_MESSAGES[kind])
     this.name = 'AuthError'
   }
 }
 
-const API_ERROR_MESSAGES: Record<AuthErrorKind, string> = {
+const API_AUTH_ERROR_MESSAGES = {
   user_exists: 'Пользователь с таким e-mail уже существует',
   invalid_credentials: 'Неверный логин или пароль',
   unknown_registration: 'Произошла ошибка при регистрации',
-  unknown_login: 'Произошла ошибка при входе'
+  unknown_login: 'Произошла ошибка при входе',
+  server: 'Ошибка сервера'
 }

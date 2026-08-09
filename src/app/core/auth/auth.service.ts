@@ -10,7 +10,7 @@ import { AuthError } from './auth.errors'
 export class AuthService {
   private readonly _http = inject(HttpClient)
   private readonly _cookie = inject(CookieService)
-  private readonly _baseUrl = inject(API_BASE_URL)
+  private readonly _apiBaseUrl = inject(API_BASE_URL)
   private readonly _authTokenCookie = inject(AUTH_TOKEN_COOKIE)
 
   private readonly _user = signal<User | null>(null)
@@ -32,7 +32,7 @@ export class AuthService {
     password: string
   }): Observable<boolean> {
     return this._http
-      .post<AuthResponse>(`${this._baseUrl}/register`, {
+      .post<AuthResponse>(`${this._apiBaseUrl}/register`, {
         email,
         password,
         userName
@@ -45,6 +45,9 @@ export class AuthService {
             err.error.message === 'RESOURCE_USER_ALREADY_EXISTS'
           ) {
             return throwError(() => new AuthError('user_exists'))
+          }
+          if (err.status === 403) {
+            return throwError(() => new AuthError('server'))
           }
           return throwError(() => new AuthError('unknown_registration'))
         })
@@ -59,7 +62,7 @@ export class AuthService {
     password: string
   }): Observable<boolean> {
     return this._http
-      .post<AuthResponse>(`${this._baseUrl}/auth`, {
+      .post<AuthResponse>(`${this._apiBaseUrl}/auth`, {
         email,
         password
       })
@@ -75,13 +78,16 @@ export class AuthService {
           ) {
             return throwError(() => new AuthError('invalid_credentials'))
           }
+          if (err.status === 403) {
+            return throwError(() => new AuthError('server'))
+          }
           return throwError(() => new AuthError('unknown_login'))
         })
       )
   }
 
   public checkAuth(): Observable<User | null> {
-    return this._http.get<User>(`${this._baseUrl}/auth_me`).pipe(
+    return this._http.get<User>(`${this._apiBaseUrl}/auth_me`).pipe(
       tap(user => this._user.set(user)),
       catchError(() => {
         this._clearSession()
