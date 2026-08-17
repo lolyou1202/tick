@@ -1,0 +1,74 @@
+<div class="default-input__container">
+  <div
+    class="default-input__field-container"
+    [class.size-sm]="size() === 'sm'"
+    [class.size-md]="size() === 'md'"
+    [class.size-lg]="size() === 'lg'"
+    [class.style-disabled]="disabled()"
+    [class.variant-outlined]="variant() === 'outlined'"
+    [class.variant-filled]="variant() === 'filled'"
+    [class.invalid]="invalid()"
+  >
+    @if (leftSectionIconName(); as iconName) {
+      <button
+        class="default-input__section-btn left-section"
+        [disabled]="leftSectionDisabled()"
+        (mousedown)="$event.preventDefault()"
+        (click)="$event.preventDefault(); onLeftSectionClick($event)"
+      >
+        <app-icon
+          [name]="iconName"
+          size="16px"
+          class="default-input__section-icon"
+        />
+      </button>
+    }
+    <input
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [value]="value()"
+      (input)="onInput($event.target.value)"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      class="default-input__field default-text"
+    />
+    @if (showClearButton()) {
+      <button
+        class="default-input__section-btn right-section"
+        (mousedown)="$event.preventDefault()"
+        (click)="$event.preventDefault(); onClear()"
+      >
+        <app-icon
+          name="cross"
+          size="12px"
+          class="default-input__section-icon clear"
+        />
+      </button>
+    }
+    @if (rightSectionIconName(); as iconName) {
+      <button
+        class="default-input__section-btn right-section"
+        [disabled]="rightSectionDisabled()"
+        (mousedown)="$event.preventDefault()"
+        (click)="$event.preventDefault(); onRightSectionClick($event)"
+      >
+        <app-icon
+          [name]="iconName"
+          size="16px"
+          class="default-input__section-icon"
+        />
+      </button>
+    }
+  </div>
+  @if (touched() && invalid()) {
+    <div class="default-input__errors">
+      @for (message of errorMessages(); track $index) {
+        <p class="default-input__errors-message small-text">
+          {{ message }}
+        </p>
+      }
+    </div>
+  }
+</div>
