@@ -1,0 +1,24 @@
+<div class="auth-layout__container">
+  <header class="auth-layout__header">
+    <div class="auth-layout__header-container container-d">
+      <img src="./sign-logo.svg" alt="logo" class="auth-layout__header-logo" />
+    </div>
+  </header>
+  <main class="auth-layout__main">
+    <div class="auth-layout__form-container bordered-container">
+      <h2 class="auth-layout__form-title">
+        {{ formTitle() }}
+      </h2>
+    </div>
+    <div class="auth-layout__auth-question">
+      <p class="default-text text-color-gray">
+        {{ authQuestionLabel() }}
+      </p>
+      <a [routerLink]="authLink()">
+        <p class="default-text">
+          {{ authLinkLabel() }}
+        </p>
+      </a>
+    </div>
+  </main>
+</div>
