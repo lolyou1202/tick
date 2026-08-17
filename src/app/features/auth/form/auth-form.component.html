@@ -1,0 +1,53 @@
+<form [formRoot]="form()" class="auth-form__form">
+  @if (!isLogin()) {
+    <app-default-input
+      [formField]="registerForm.userName"
+      variant="filled"
+      type="text"
+      leftSectionIconName="people"
+      [leftSectionDisabled]="true"
+      placeholder="Псевдоним"
+      size="lg"
+      class="auth-form__input-field"
+    />
+  }
+  <app-default-input
+    [formField]="form().email"
+    variant="filled"
+    type="email"
+    leftSectionIconName="mail"
+    [leftSectionDisabled]="true"
+    placeholder="E-mail"
+    size="lg"
+    class="auth-form__input-field"
+  />
+  <app-default-input
+    [formField]="form().password"
+    variant="filled"
+    type="password"
+    leftSectionIconName="lock"
+    [leftSectionDisabled]="true"
+    placeholder="Пароль"
+    size="lg"
+    class="auth-form__input-field"
+  />
+  <app-default-button
+    [disabled]="formSubmitting()"
+    [label]="submitLabel()"
+    variant="filled"
+    type="submit"
+    width="full-width"
+    leftSectionIconName="lock"
+    size="lg"
+    class="auth-form__submit-btn"
+  />
+  @if (formErrors(); as errorsList) {
+    <div class="auth-form__errors">
+      @for (err of errorsList; track $index) {
+        <p class="auth-form__errors-message small-text">
+          {{ err.message }}
+        </p>
+      }
+    </div>
+  }
+</form>
