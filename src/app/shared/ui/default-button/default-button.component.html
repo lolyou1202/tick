@@ -1,0 +1,20 @@
+<button
+  [type]="type()"
+  [disabled]="disabled()"
+  (click)="onClick()"
+  class="default-button default-text"
+  [class.size-sm]="size() === 'sm'"
+  [class.size-md]="size() === 'md'"
+  [class.size-lg]="size() === 'lg'"
+  [class.variant-filled]="variant() === 'filled'"
+  [class.variant-outlined]="variant() === 'outlined'"
+  [class.style-full-width]="width() === 'full-width'"
+  [class.style-disabled]="disabled()"
+>
+  @if (iconName(); as iconName) {
+    <app-icon [name]="iconName" class="default-button__icon" />
+  }
+  @if (label(); as label) {
+    <p class="default-button__label">{{ label }}</p>
+  }
+</button>
