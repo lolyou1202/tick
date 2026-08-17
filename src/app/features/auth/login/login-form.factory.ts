@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core'
-import { Router } from '@angular/router'
+//import { Router } from '@angular/router'
 import {
   form,
   required,
@@ -15,7 +15,7 @@ import { AuthError } from '../../../core/auth/auth.errors'
 @Injectable({ providedIn: 'root' })
 export class LoginFormFactory {
   private readonly _authService = inject(AuthService)
-  private readonly _router = inject(Router)
+  //private readonly _router = inject(Router)
 
   public readonly loginForm = form(
     signal({

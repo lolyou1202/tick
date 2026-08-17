@@ -1,16 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { LoginFormFactory } from '../../features/auth/login/login-form.factory'
-import { FormField, FormRoot } from '@angular/forms/signals'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import AuthLayoutComponent from '../../layouts/auth/auth-layout.component'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
-  imports: [FormRoot, FormField],
+  imports: [AuthLayoutComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class LoginComponent {
-  private readonly _formFactory = inject(LoginFormFactory)
-
-  protected loginForm = this._formFactory.loginForm
-}
+export default class LoginComponent {}

@@ -1,0 +1,86 @@
+.default-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: none;
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+  user-select: none;
+
+  &.size-sm {
+    height: 32px;
+    padding: 0 16px;
+  }
+
+  &.size-md {
+    height: 36px;
+    padding: 0 20px;
+  }
+
+  &.size-lg {
+    height: 40px;
+    padding: 0 24px;
+  }
+
+  &.variant-filled {
+    background-color: var(--color-primary);
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    &.style-disabled {
+      background-color: var(--color-primary-disable);
+    }
+
+    .default-button__label,
+    .default-button__icon {
+      color: var(--color-white);
+    }
+  }
+
+  &.variant-outlined {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-border);
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+
+    &.style-disabled {
+      background-color: var(--color-dark-2);
+
+      .default-button__label,
+      .default-button__icon {
+        color: var(--color-dark-6);
+      }
+    }
+
+    .default-button__label,
+    .default-button__icon {
+      color: var(--color-gray-1);
+    }
+  }
+
+  &.transparent {
+  }
+
+  &.small-padding {
+    padding: 0 24px;
+  }
+
+  &.style-full-width {
+    width: 100%;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,21 @@
+:host {
+  --icon-size: inherit;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+	
+  line-height: 0;
+  color: inherit;
+}
+
+svg {
+  display: block;
+
+  width: var(--icon-size);
+  height: var(--icon-size);
+
+  fill: currentColor;
+}
