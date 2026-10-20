@@ -5,12 +5,12 @@
     </div>
   </header>
   <main class="auth-layout__main">
-    <div class="auth-layout__form-container bordered-container">
+    <section class="auth-layout__form-container bordered-container">
       <h2 class="auth-layout__form-title">
         {{ formTitle() }}
       </h2>
       <app-auth-form [mode]="mode()" />
-    </div>
+    </section>
     <div class="auth-layout__auth-question">
       <p class="default-text text-color-gray">
         {{ authQuestionLabel() }}

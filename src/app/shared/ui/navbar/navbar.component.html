@@ -1,0 +1,33 @@
+<div class="navbar__container">
+  <div class="navbar__section">
+    <div class="navbar__user"></div>
+    <nav class="navbar__nav">
+      <ul class="navbar__list">
+        @for (item of mainNavItems; track $index) {
+          <li routerLinkActive="active" class="navbar__list-item">
+            <a [routerLink]="item.link" class="navbar__list-item-link">
+              <app-icon
+                [name]="item.icon"
+                size="28px"
+                class="navbar__list-item-icon"
+              />
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="navbar__section">
+    <ul class="navbar__list">
+      @for (item of secondaryNavItems; track $index) {
+        <li class="navbar__list-item" (click)="item.handler()">
+          <app-icon
+            [name]="item.icon"
+            size="28px"
+            class="navbar__list-item-icon"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+</div>

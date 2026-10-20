@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core'
-//import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import {
   form,
   required,
@@ -15,7 +15,8 @@ import { AuthError } from '../../../core/auth/auth.errors'
 @Injectable({ providedIn: 'root' })
 export class LoginFormFactory {
   private readonly _authService = inject(AuthService)
-  //private readonly _router = inject(Router)
+  private readonly _router = inject(Router)
+  private readonly _route = inject(ActivatedRoute)
 
   public readonly loginForm = form(
     signal({
@@ -84,7 +85,8 @@ export class LoginFormFactory {
                 password
               })
             )
-            //await this._router.navigate(['/tasks'])
+            const rUrl = this._route.snapshot.queryParams['rUrl'] || '/tasks'
+            await this._router.navigateByUrl(rUrl)
             return
           } catch (error) {
             if (error instanceof AuthError) {

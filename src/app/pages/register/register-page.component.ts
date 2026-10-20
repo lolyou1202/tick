@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { RegisterFormFactory } from '../../features/auth/register/register-form.factory'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import AuthLayoutComponent from '../../layouts/auth/auth-layout.component'
 
 @Component({
@@ -9,8 +8,4 @@ import AuthLayoutComponent from '../../layouts/auth/auth-layout.component'
   imports: [AuthLayoutComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class RegisterPageComponent {
-  private readonly _formFactory = inject(RegisterFormFactory)
-
-  protected registerForm = this._formFactory.registerForm
-}
+export default class RegisterPageComponent {}

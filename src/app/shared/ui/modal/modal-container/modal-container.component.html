@@ -1,0 +1,18 @@
+<div
+  class="modal-container"
+  role="dialog"
+  aria-modal="true"
+  (click)="$event.stopPropagation()"
+>
+  <div class="modal-container__content">
+    @if (contentComponent(); as contentComponent) {
+      <ng-container
+        *ngComponentOutlet="contentComponent; inputs: contentComponentInputs()"
+      />
+    } @else if (contentTemplate(); as contentTemplate) {
+      <ng-container *ngTemplateOutlet="contentTemplate" />
+    } @else {
+      <ng-content />
+    }
+  </div>
+</div>
